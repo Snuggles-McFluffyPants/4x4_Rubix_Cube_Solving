@@ -9,6 +9,4 @@ original place along with the solution with the least number of steps
 to get there
 """
 
-original_list = [1,2,3,4,5,6,7,8]
-
 
