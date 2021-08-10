@@ -25,7 +25,28 @@ def mirror_array(input_array):
     mirrored_array = [x for x in input_array[::-1]]
     return mirrored_array
 
-# Test to make sure that the code is working ok
+def put_nums_in_range(set_o_nums, num_min = 0, num_max = 7, remainders_of = 8):
+
+    goodness_check = []
+    for num in set_o_nums:
+        if num >= num_min and num <= num_max:
+            goodness_check = goodness_check.append(num)
+
+    if len(goodness_check) == 0:
+        return "no good nums in array"
+
+    else:
+        final_array = []
+
+        for num in set_o_nums:
+            num = num % remainders_of
+            final_array = final_array.append(num)
+
+        final_array = tuple(final_array)
+        return final_array
+
+
+# Test to make sure that the code abover is working ok
 if __name__ == "__main__":
     original_list = (0, 1, 2, 3, 4, 5, 6, 7)
 
