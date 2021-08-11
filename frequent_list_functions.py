@@ -28,9 +28,13 @@ def mirror_array(input_array):
 def put_nums_in_range(set_o_nums, num_min = 0, num_max = 7, remainders_of = 8):
 
     goodness_check = []
-    for num in set_o_nums:
-        if num >= num_min and num <= num_max:
-            goodness_check = goodness_check.append(num)
+
+    for subset in set_o_nums:
+        for num in subset:
+            # print('num:',num)
+            # print(type(num))
+            if num >= num_min and num <= num_max:
+                goodness_check.append(num)
 
     if len(goodness_check) == 0:
         return "no good nums in array"
@@ -38,9 +42,13 @@ def put_nums_in_range(set_o_nums, num_min = 0, num_max = 7, remainders_of = 8):
     else:
         final_array = []
 
-        for num in set_o_nums:
-            num = num % remainders_of
-            final_array = final_array.append(num)
+        for subset in set_o_nums:
+            part_array = []
+            for num in subset:
+
+                num = num % remainders_of
+                part_array.append(num)
+            final_array.append(part_array)
 
         final_array = tuple(final_array)
         return final_array
@@ -51,11 +59,15 @@ if __name__ == "__main__":
     original_list = (0, 1, 2, 3, 4, 5, 6, 7)
 
     swap_list = [0,2,4]
+    print('\n-----------------------------------------------------')
+    print("Original Swap List: ", swap_list)
 
     swap_list = mirror_array(swap_list)
-    print(swap_list)
+    print("Mirrored Swap List: ", swap_list)
 
     final_list = swap_around(original_list, swap_list)
 
-    print(original_list)
-    print(final_list)
+    print("First List: ",original_list)
+    print("Final List: ",final_list)
+
+    print('-----------------------------------------------------\n')
