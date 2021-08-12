@@ -23,15 +23,28 @@ moves_list = ("Mirrored L Switch", "X-Switch", "Tip Touching L Switch", "3-Way S
 original_list = (0, 1, 2, 3, 4, 5, 6, 7)
 
 
-run_func = True
-shift = 0
-
-while run_func == True:
-    new_array = do_rubix_move("Mirrored L Switch",
-                              original_list,
-                              swap_around_shift=shift)
-
-    if new_array == "invalid move":
-        break
 
 
+
+
+def trymoves(rubix_move):
+    run_func = True
+    shift = 0
+    mirroring = "No"
+    while run_func == True:
+
+
+        new_array = do_rubix_move(rubix_move,
+                                  original_list,
+                                  swap_around_shift=shift)
+
+        if new_array == "invalid move":
+            break
+
+        print(new_array)
+
+        shift+=1
+
+cur_move = moves_list[0]
+
+trymoves(cur_move)

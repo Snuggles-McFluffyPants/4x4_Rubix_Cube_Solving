@@ -32,6 +32,7 @@ def do_rubix_move(rubix_move,
 
     moving = rubix_move["Swap_around"]
     moving = list(moving)
+    print('moving1:',moving)
 
     # Determine which items in the list to move around
     next_option = rubix_move["Next_option"]
@@ -40,18 +41,22 @@ def do_rubix_move(rubix_move,
     moving2 = []
 
     for item in moving:
-        if isinstance(item, int) == False:
+        try:
+        # if isinstance(item, int) == False:
             item = list(item)
             item2 = []
             for subitem in item:
                 subitem = subitem + shift
                 item2.append(subitem)
             moving2.append(item2)
-        else:
-            # print(item)
+        except TypeError:
+            item = item + shift
             try:
+                # item = item + shift
                 moving2[0].append(item)
             except IndexError:
+                # item = item + shift
+
                 moving2 = [[]]
                 moving2[0].append(item)
 
@@ -75,7 +80,7 @@ def do_rubix_move(rubix_move,
                 moving3.append(item)
             moving = moving3
         else:
-            return "invalid move"
+            return "mirroring not available"
 
     print("moving = ",moving)
 
@@ -104,9 +109,10 @@ if __name__ == "__main__":
 
     print('\n\n')
     name = "3-Way Switch"
+    print(name)
     new_array = do_rubix_move(name,
                               original_list,
-                              swap_around_shift=1,
+                              swap_around_shift=2,
                               do_mirroring="Yes")
     print(new_array)
 
@@ -114,6 +120,8 @@ if __name__ == "__main__":
     name = "3-Way Switch"
     new_array = do_rubix_move(name,
                               original_list,
-                              swap_around_shift=1)
+                              swap_around_shift=2)
     print(new_array)
+
+
 
