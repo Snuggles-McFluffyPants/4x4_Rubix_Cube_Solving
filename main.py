@@ -18,3 +18,20 @@ Note: Possible Moves are:
 
 from Rubix_Cube_Movement import *
 
+moves_list = ("Mirrored L Switch", "X-Switch", "Tip Touching L Switch", "3-Way Switch")
+
+original_list = (0, 1, 2, 3, 4, 5, 6, 7)
+
+
+run_func = True
+shift = 0
+
+while run_func == True:
+    new_array = do_rubix_move("Mirrored L Switch",
+                              original_list,
+                              swap_around_shift=shift)
+
+    if new_array == "invalid move":
+        break
+
+
