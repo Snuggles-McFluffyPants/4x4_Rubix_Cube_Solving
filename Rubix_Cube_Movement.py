@@ -61,11 +61,11 @@ def do_rubix_move(rubix_move,
                 moving2[0].append(item)
 
     moving2 = put_nums_in_range(moving2)
-    moving2 = list(moving2)
-
 
     if moving2 == "no good nums in array":
-        return "invalid move"
+        return "no good nums in array"
+
+    moving2 = list(moving2)
 
     moving = moving2
 
@@ -73,12 +73,13 @@ def do_rubix_move(rubix_move,
 
     if do_mirroring != "No":
         if rubix_move["Do_mirroring"] == "Yes":
-            moving3 = []
+            moving2 = []
             sublist = []
             for item in moving:
+                # print("i=",moving)
                 item = mirror_array(item)
-                moving3.append(item)
-            moving = moving3
+                moving2.append(item)
+            moving = moving2
         else:
             return "mirroring not available"
 
@@ -112,7 +113,7 @@ if __name__ == "__main__":
     print(name)
     new_array = do_rubix_move(name,
                               original_list,
-                              swap_around_shift=2,
+                              swap_around_shift=8,
                               do_mirroring="Yes")
     print(new_array)
 

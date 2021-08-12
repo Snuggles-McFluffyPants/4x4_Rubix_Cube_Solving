@@ -38,7 +38,7 @@ def trymoves(rubix_move):
                                   original_list,
                                   swap_around_shift=shift)
 
-        if new_array == "invalid move":
+        if new_array == "no good nums in array":
             break
 
         print(new_array)
