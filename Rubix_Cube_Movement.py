@@ -5,22 +5,26 @@ possible_moves = {"Mirrored L Switch":
                        "Next_option": 2,
                        "Swap_around": ((0, 2), (3, 5)),
                        "Do_mirroring": "No",
-                       "Nums_in_range": 2},
+                       "Nums_in_range": 2,
+                       'Max_Shift': 3},
                   "X-Switch":
                       {"Start_at": 0,
                        "Next_option": 2,
                        "Swap_around": ((1, 3), (2, 4)),
-                       "Do_mirroring": "No"},
+                       "Do_mirroring": "No",
+                       'Max_Shift': 3},
                   "Tip Touching L Switch":
                       {"Start_at": 0,
                        "Next_option": 2,
                        "Swap_around": ((1, 3), (4, 5)),
-                       "Do_mirroring": "No"},
+                       "Do_mirroring": "No",
+                       'Max_Shift': 3},
                   "3-Way Switch":
                       {"Start_at": 0,
                        "Next_option": 1,
                        "Swap_around": ((0, 2, 4)),
-                       "Do_mirroring": "Yes"},
+                       "Do_mirroring": "Yes",
+                       'Max_Shift': 7},
                   }
 
 def do_rubix_move(rubix_move,
@@ -32,7 +36,7 @@ def do_rubix_move(rubix_move,
 
     moving = rubix_move["Swap_around"]
     moving = list(moving)
-    print('moving1:',moving)
+    # print('moving1:',moving)
 
     # Determine which items in the list to move around
     next_option = rubix_move["Next_option"]
@@ -83,7 +87,7 @@ def do_rubix_move(rubix_move,
         else:
             return "mirroring not available"
 
-    print("moving = ",moving)
+    # print("moving = ",moving)
 
     # Final Moving the numbers around
     new_array = input_array
@@ -95,34 +99,84 @@ def do_rubix_move(rubix_move,
     return output_array
 
 
+# if __name__ == "__main__":
+#
+#     original_list = (0, 1, 2, 3, 4, 5, 6, 7)
+#     # print(original_list)
+#
+#     # Possible names of moves are:
+#     # Mirrored L Switch, X-Switch, Tip Touching L Switch, 3-Way Switch
+#     name = "X-Switch"
+#     new_array = do_rubix_move(name, original_list, swap_around_shift=1)
+#     # print(new_array)
+#
+#     # Test the mirroring in the 3-way switch
+#
+#     # print('\n\n')
+#     name = "3-Way Switch"
+#     # print(name)
+#     new_array = do_rubix_move(name,
+#                               original_list,
+#                               swap_around_shift=8,
+#                               do_mirroring="Yes")
+#     # print(new_array)
+#
+#     # print('\n\n')
+#     name = "3-Way Switch"
+#     new_array = do_rubix_move(name,
+#                               original_list,
+#                               swap_around_shift=2)
+#     # print(new_array)
+
+
+
 if __name__ == "__main__":
 
+    rubix_moves_max = {"Mirrored L Switch":
+                           {"Max_Shift": 0},
+                       "X-Switch":
+                           {"Max_Shift": 0},
+                       "Tip Touching L Switch":
+                           {"Max_Shift": 0},
+                       "3-Way Switch":
+                           {"Max_Shift": 0}
+                       }
+
     original_list = (0, 1, 2, 3, 4, 5, 6, 7)
-    print(original_list)
 
-    # Possible names of moves are:
-    # Mirrored L Switch, X-Switch, Tip Touching L Switch, 3-Way Switch
-    name = "X-Switch"
-    new_array = do_rubix_move(name, original_list, swap_around_shift=1)
-    print(new_array)
+    moves_list = ("Mirrored L Switch", "X-Switch", "Tip Touching L Switch", "3-Way Switch")
+    for move in moves_list:
+        # print('\n\n')
+        name = move
+        # print(name)
 
-    # Test the mirroring in the 3-way switch
+        shift = 0
+        new_array = 0
 
-    print('\n\n')
-    name = "3-Way Switch"
-    print(name)
-    new_array = do_rubix_move(name,
-                              original_list,
-                              swap_around_shift=8,
-                              do_mirroring="Yes")
-    print(new_array)
+        while new_array != "no good nums in array":
 
-    print('\n\n')
-    name = "3-Way Switch"
-    new_array = do_rubix_move(name,
-                              original_list,
-                              swap_around_shift=2)
-    print(new_array)
+            new_array = do_rubix_move(name,
+                                      original_list,
+                                      swap_around_shift=shift)
 
+            rubix_moves_max[move]["Max_Shift"] = shift
 
+            shift += 1
+
+    print(rubix_moves_max)
+
+    # move_name = moves_list[0]
+
+    # print(rubix_moves_max[move_name]["Max_Shift"])
+    for move in moves_list:
+        # print(move)
+        over_shift = rubix_moves_max[move]["Max_Shift"]
+        # over_shift += 1
+        # print(over_shift)
+
+        new_array = do_rubix_move(name,
+                                  original_list,
+                                  swap_around_shift=shift)
+
+        assert new_array == "no good nums in array"
 
