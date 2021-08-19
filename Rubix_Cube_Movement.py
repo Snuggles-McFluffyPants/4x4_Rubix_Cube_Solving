@@ -6,25 +6,25 @@ possible_moves = {"Mirrored L Switch":
                        "Swap_around": ((0, 2), (3, 5)),
                        "Do_mirroring": "No",
                        "Nums_in_range": 2,
-                       'Max_Shift': 3},
+                       'Max_Shift': 4},
                   "X-Switch":
                       {"Start_at": 0,
                        "Next_option": 2,
                        "Swap_around": ((1, 3), (2, 4)),
                        "Do_mirroring": "No",
-                       'Max_Shift': 3},
+                       'Max_Shift': 4},
                   "Tip Touching L Switch":
                       {"Start_at": 0,
                        "Next_option": 2,
                        "Swap_around": ((1, 3), (4, 5)),
                        "Do_mirroring": "No",
-                       'Max_Shift': 3},
+                       'Max_Shift': 4},
                   "3-Way Switch":
                       {"Start_at": 0,
                        "Next_option": 1,
                        "Swap_around": ((0, 2, 4)),
                        "Do_mirroring": "Yes",
-                       'Max_Shift': 7},
+                       'Max_Shift': 8},
                   }
 
 def do_rubix_move(rubix_move,

@@ -17,34 +17,44 @@ Note: Possible Moves are:
 """
 
 from Rubix_Cube_Movement import *
+from generate_all_move_options import all_options
 
-moves_list = ("Mirrored L Switch", "X-Switch", "Tip Touching L Switch", "3-Way Switch")
+# Check whether or not 2 arrays are the same arrays but with 2 items
+# in different places
+def array_diff_check(array1, array2, diff_items = 2):
 
-original_list = (0, 1, 2, 3, 4, 5, 6, 7)
+    # Complete a check to make sure everything is ok with arrays to examine
+    precheck ="in progress"
+    while precheck == "in progress":
+        if len(array1) != len(array2):
+            raise TypeError("\n------  Lengths of array's imported are not equal")
+
+        array1_set = set(array1)
+        array2_set = set(array2)
+
+        check_array = array1_set - array2_set
+        check_array2 = array2_set - array1_set
+
+        assert len(check_array) == 0, "Arrays contain different items"
+        assert len(check_array2) == 0, "Arrays contain different items"
+
+        precheck = "Done"
+
+    diff_evaluate = 0
+    for (a, b) in zip(array1, array2):
+        if a != b:
+            diff_evaluate += 1
+            # print(a, b)
+
+    if diff_evaluate == diff_items:
+        return ("arrays all good")
+    else:
+        return("needs more processing")
 
 
+for rubix_move in all_options:
+    move = rubix_move[0]
+    shift = rubix_move[1]
+    mirroring = rubix_move[2]
 
-
-
-
-def trymoves(rubix_move):
-    run_func = True
-    shift = 0
-    mirroring = "No"
-    while run_func == True:
-
-
-        new_array = do_rubix_move(rubix_move,
-                                  original_list,
-                                  swap_around_shift=shift)
-
-        if new_array == "no good nums in array":
-            break
-
-        print(new_array)
-
-        shift+=1
-
-cur_move = moves_list[0]
-
-trymoves(cur_move)
+    # output_array = do_rubix_move(move,original_list,shift,mirroring)
